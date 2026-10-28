@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dev Task Hub</title>
+    <link rel="stylesheet" href="style.css" />
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div class="app">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <div class="logo">Dev Task Hub</div>
+            <ul class="menu">
+                <li class="active" data-target="dashboard"><i class="icon">🏠</i> Dashboard</li>
+                <li data-target="all"><i class="icon">📋</i> All Tasks</li>
+                <li data-target="inprogress"><i class="icon">🚧</i> In Progress</li>
+                <li data-target="done"><i class="icon">✅</i> Completed</li>
+                <li data-target="settings"><i class="icon">⚙️</i> Settings</li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main">
+            <header class="header">
+                <h1>Dashboard</h1>
+                <button id="addTaskBtn" class="btn-primary">+ Add Task</button>
+            </header>
+            <section class="stats">
+                <div class="stat-card" id="totalTasks">0 Tasks</div>
+                <div class="stat-card" id="completedTasks">0 Completed</div>
+                <div class="stat-card" id="pendingTasks">0 Pending</div>
+                <div class="stat-card" id="completionPct">0% Done</div>
+            </section>
+            <section class="controls">
+                <input type="text" id="searchInput" placeholder="Search tasks..." />
+                <select id="statusFilter">
+                    <option value="all">All Statuses</option>
+                    <option value="todo">To Do</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+                <select id="priorityFilter">
+                    <option value="all">All Priorities</option>
+                    <option value="low">Low</option>
+                    <option value="medium">Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <select id="sortSelect">
+                    <option value="createdDesc">Newest</option>
+                    <option value="createdAsc">Oldest</option>
+                    <option value="dueAsc">Due Soon</option>
+                    <option value="dueDesc">Due Later</option>
+                </select>
+                <button id="clearAllBtn" class="btn-danger">Clear All</button>
+            </section>
+            <section class="task-list" id="taskList">
+                <!-- Tasks will be rendered here -->
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal for Add / Edit Task -->
+    <div class="modal" id="taskModal">
+        <div class="modal-content">
+            <span class="close" id="closeModal">&times;</span>
+            <h2 id="modalTitle">Add New Task</h2>
+            <form id="taskForm">
+                <label>Title<span class="required">*</span></label>
+                <input type="text" id="taskTitle" required />
+                <label>Description</label>
+                <textarea id="taskDesc"></textarea>
+                <label>Priority<span class="required">*</span></label>
+                <select id="taskPriority" required>
+                    <option value="low">Low</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="high">High</option>
+                </select>
+                <label>Status<span class="required">*</span></label>
+                <select id="taskStatus" required>
+                    <option value="todo" selected>To Do</option>
+                    <option value="inprogress">In Progress</option>
+                    <option value="done">Done</option>
+                </select>
+                <label>Due Date</label>
+                <input type="date" id="taskDue" />
+                <div class="modal-actions">
+                    <button type="submit" class="btn-primary" id="saveTaskBtn">Save</button>
+                    <button type="button" class="btn-secondary" id="cancelTaskBtn">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
